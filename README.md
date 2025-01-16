@@ -19,3 +19,10 @@ The **To-Do List Console Application** is a simple Python-based project that hel
 1. Clone this repository:
    ```bash
    git clone https://github.com/your-username/your-repo-name.git
+
+###Code implimentation
+replacing if else with switch is better
+
+adding something here
+
+   
