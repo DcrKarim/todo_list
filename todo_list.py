@@ -2,21 +2,21 @@ class TodoList:
     def __init__(self):
         self.tasks = []
 
-    def add_task(self, task):
-        self.tasks.append(task)
-        print(f"Task '{task}' added.")
+    def add_task(self, task, priority):
+        self.tasks.append({"task": task, "priority": priority})
+        print(f"Task '{task}' with priority '{priority}' added.")
 
     def list_tasks(self):
         if self.tasks:
             print("Tasks:")
             for idx, task in enumerate(self.tasks, 1):
-                print(f"{idx}. {task}")
+                print(f"{idx}. {task['task']} - Priority: {task['priority']}")
         else:
             print("No tasks.")
 
     def complete_task(self, index):
         if 1 <= index <= len(self.tasks):
-            task = self.tasks[index - 1]
+            task = self.tasks[index - 1]["task"]
             print(f"Task '{task}' marked as complete.")
             del self.tasks[index - 1]
         else:
@@ -24,7 +24,7 @@ class TodoList:
 
     def delete_task(self, index):
         if 1 <= index <= len(self.tasks):
-            task = self.tasks[index - 1]
+            task = self.tasks[index - 1]["task"]
             print(f"Task '{task}' deleted.")
             del self.tasks[index - 1]
         else:
@@ -42,6 +42,19 @@ def get_valid_integer(prompt):
         except ValueError:
             print("Invalid input. Please enter a valid integer.")
 
+def get_valid_priority():
+    """
+    Helper function to validate task priority.
+    Re-prompts the user until a valid priority is entered.
+    """
+    priorities = ["High", "Medium", "Low"]
+    while True:
+        priority = input("Enter priority (High, Medium, Low): ").capitalize()
+        if priority in priorities:
+            return priority
+        else:
+            print("Invalid priority. Please choose from High, Medium, or Low.")
+
 def main():
     todo_list = TodoList()
     while True:
@@ -57,7 +70,8 @@ def main():
         match choice:
             case '1':
                 task = input("Enter task: ")
-                todo_list.add_task(task)
+                priority = get_valid_priority()
+                todo_list.add_task(task, priority)
             case '2':
                 todo_list.list_tasks()
             case '3':
@@ -74,3 +88,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
