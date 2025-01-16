@@ -25,4 +25,7 @@ replacing if else with switch is better
 
 adding something here
 
+### I added this for question 4 
+merged pull request to imporve documentation
+
    
